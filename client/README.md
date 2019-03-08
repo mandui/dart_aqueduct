@@ -39,8 +39,12 @@ targets:
 2. 在web文件夹下的styles.css文件中添加：
 ```css
 @font-face {
-  font-family: 'roboto';
-  src: url('/assets/fonts/Roboto-Regular.ttf') format("truetype");
+  font-family: 'roboto-light';
+  /* this url refers to AFTER build script, 
+  * under the web dir, exists an ASSETS dir,
+  * which made me crazy... afterall, china cannot access google api
+  */
+  src: url('/assets/fonts/Roboto-Light.ttf') format("truetype");
   font-weight: normal;
 }
 ```
