@@ -34,6 +34,8 @@ class ServerChannel extends ApplicationChannel {
         return Response.ok({"key": "value"});
       });
 
+    
+
     return router;
   }
 }

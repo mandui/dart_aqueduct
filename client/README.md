@@ -4,16 +4,73 @@
 
 这一周都在忙着看各种语言写代码，测试所需功能，这里补充一个AngularDart的整体说明。
 
+这里先从开发角度解释结构连接，直到最后才会部署
+
 ### 设计思路
 
 现在的框架设计基本是将庞大的功能需求划分为小的独立的模块，每个模块可以单独调试开发，再依据模块功能给出一个逻辑清晰的模板。
 
-AngularDart是Google用Dart语言重写的Angular框架。在AngularDart中，这种最小模块定义为Component，这个Component包括绑定了视图、数据与操作。由于AngularDart是用于Web app的，所以单独一个Component的结构如下：
+AngularDart是Google用Dart语言重写的Angular框架。在AngularDart中，这种最小模块定义为**Component**，这个Component包括绑定了视图、数据与操作。
+
+### Component目录结构
+
+由于AngularDart是用于Web app的，所以单独一个Component的结构如下(里面的html和css是针对此模块封装的)，后面的解释将会基于此开展：
 
 ```bash
+└─todo_list
+    └─todo_list_component.html # 定义视图构成
+    └─todo_list_component.css  # 定义html样式
+    # 配置component，在视图生命周期的正确位置连接data/action等等
+    └─todo_list_component.dart
+    # 任何func都可称为service，比如拉数据，比如计算
+    └─todo_list_service.dart
 ```
 
+#### todo_list_component.dart
 
+上述命名并无强制规范，并不需要都是用同一个名字，后面加component，它们之间的关联是定义在todo_list_component.dart文件中。AngularDart中并不能自动import，每一个用到的部分都需要在@Component中注册。
+
+```dart
+ ...
+ // @Component关键字，在build的时候表明自己是一个component，是Angular识别它的依据
+ // 这是component配置部分
+ @Component {
+   // 前面提到css封装，selector指明styleUrls中的css文件只适用于'todo-list'节点
+   selector: 'todo-list',
+   styleUrls: ['todo_list_component.css'],
+   // component的html
+   templateUrl: 'todo_list_component.html',
+   // directives可以看作功能性视图的import
+   directives: [ MaterialIconComponent, NgFor, ...],
+   // 用到了哪些服务类
+   providers: [ClassProvider(TodoListService)],
+ }
+
+```
+
+每个视图也有[lifecycle](https://webdev.dartlang.org/angular/guide/lifecycle-hooks)，比如说这个component引用了其他component，适用于在了解视图状态，并在固定时间点做一些处理。
+
+```dart
+@Component { ... }
+
+class TodoListComponent implements OnInit {
+  ...
+  final TodoListService todoListService;
+  TodoListComponent(this.todoListService);
+
+  // fetch data in onInit
+  @override
+  Future<Null> ngOnInit() async {
+    items = await todoListService.getTodoList();
+  }
+  ...
+}
+
+```
+
+#### todo_list_service.dart
+
+我本该再写完的...不过半天假在召唤我.....
 
 
 ## 3月7日更新
