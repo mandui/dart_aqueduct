@@ -1,9 +1,13 @@
 # Client Log
 
-## March 7
-I have to say, learning something from web open course makes me feel great, it's like suddenly I got such amazing ablity to make things easy, elegant and effective. But in reality, it took hours to figure out why it not working, which seems like a level 101 problem...
+## 3月7日更新
+看网上课程时，总觉得自己多出了许多神奇的能力，可以写出优美明确又有效率的代码。但现实是，一个你觉得很简单的问题，花了几个小时来找究竟哪里写错了.....
 
-### Global styling is neccessary, this one need scss.
+### global样式变量是必需的，这需要scss
+
+Global样式中定义了theme和accent颜色，其他都是从这两色计算得来（比如重要文字是theme颜色变深40%等），定义了不同重要程度的文字大小等，这样比较协调一致，并且不同项目中修改也非常便利。
+
+angulardart中使用scss并关联，需要如下步骤（网上解答很多，也许是哪里设置的不对，唯有以下这种我尝试成功）：
 1. add a build.yaml in root dir, in this case is client dir adding following lines:
 ```yaml
 targets:
@@ -26,4 +30,25 @@ targets:
 ```
 
 ### Font is a pain
-isplaying digital text
+国内访问不到google api，但是对于数字显示，极细字体是必要的，于是需要load本地字体（只是Roboto-Light.ttf，只有78k，我觉得应该不会影响太多）。
+
+这个路径让我真是头疼了好久，语法明明很简单，它就是找不到...搜了许久，大家总是讨论如何写这个语法...可能他们都不是新手吧，最终找到正确显示的方法，但我觉得这是一个walkaround，等以后慢慢熟悉框架之后再来看吧。
+
+1. 在web文件夹下建立assets/fonts文件夹，将字体放在这里；
+
+2. 在web文件夹下的styles.css文件中添加：
+```css
+@font-face {
+  font-family: 'roboto';
+  src: url('/assets/fonts/Roboto-Regular.ttf') format("truetype");
+  font-weight: normal;
+}
+```
+3. 引用时的scss文件：
+```scss
+@mixin text-style {
+    ...
+    font-family: 'roboto-light';
+    ...
+}
+```
