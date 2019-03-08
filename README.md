@@ -2,9 +2,9 @@
 
 ## 3月7日更新
 
-由于我并没有网络前端经验，最开始我总以为静态页面需要一台服务器或是“某种程序”来提供、运行、管理它，因为我觉得页面中包含的是逻辑视图，正如java servlet模式中的servlet，这些servlet需要一个例如tomcat的容器来管理它们，在现有的例子中，aqueduct就是tomcat，angulardart app就是servlet。
+由于我并没有网络前端经验，最开始我总以为静态页面需要一台服务器或是“某种程序”来提供、运行、管理它，因为我觉得页面中包含的是逻辑视图，正如java servlet模式中的servlet+jsp，这些servlet+jsp需要一个例如tomcat的容器来管理它们，在现有的例子中，aqueduct就是tomcat，angulardart app就是servlet+jsp。
 
-这样想也对，也不对。servlet是一种概念，是一个模块，它需要依赖容器运行。而一个*编译好*的angulardart程序，是一套可以访问的html页面。angulardart只是一个方便开发的框架，它的概念*只存在于开发过程*，使用它可以有条理分模块地开发逻辑，然后由编译器将他们整理成html页面+css格式+js逻辑功能+assets资源文件的形式，其他终端只要能访问到这个文件，就可以由终端上的浏览器来解析显示它。
+这样想也对，也不对。如果非要类比的话，aqueduct应该相当于tomcat+servlet，angulardart app相当于jsp。一个*编译好*的angulardart程序，是一套可以访问的html页面。angulardart只是一个方便开发的框架，它的概念*只存在于开发过程*，使用它可以有条理分模块地开发逻辑，然后由编译器将他们整理成html页面+css格式+js逻辑功能+assets资源文件的形式，其他终端只要能访问到这个文件，就可以由终端上的浏览器来解析显示它。从目前的需求上来说，完全可以不要aqueduct。
 
 aqueduct也是一个架子，它是真正运行在服务器上的一个进程，里面写好了路径匹配，多线程管理，数据库访问以及模块化管理等。它的中文名字是管道，里面的逻辑结构我很喜欢，因为清晰明确。
 
