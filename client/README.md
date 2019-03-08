@@ -30,7 +30,6 @@ AngularDart是Google用Dart语言重写的Angular框架。在AngularDart中，�
 上述命名并无强制规范，并不需要都是用同一个名字，后面加component，它们之间的关联是定义在todo_list_component.dart文件中。AngularDart中并不能自动import，每一个用到的部分都需要在@Component中注册。
 
 ```dart
- ...
  // @Component关键字，在build的时候表明自己是一个component，是Angular识别它的依据
  // 这是component配置部分
  @Component {
