@@ -3,8 +3,7 @@
 ## 3月8日更新
 
 这一周都在忙着看各种语言写代码，测试所需功能，这里补充一个AngularDart的整体说明。
-
-这里先从开发角度解释结构连接，直到最后才会部署
+这里先从开发角度解释结构连接，直到最后才会写运行时是怎样的。
 
 ### 设计思路
 
@@ -52,12 +51,10 @@ AngularDart是Google用Dart语言重写的Angular框架。在AngularDart中，�
 
 ```dart
 @Component { ... }
-
 class TodoListComponent implements OnInit {
   ...
   final TodoListService todoListService;
   TodoListComponent(this.todoListService);
-
   // fetch data in onInit
   @override
   Future<Null> ngOnInit() async {
