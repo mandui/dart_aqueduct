@@ -1,11 +1,27 @@
 # Client Log
 
+## 3月8日更新
+
+这一周都在忙着看各种语言写代码，测试所需功能，这里补充一个AngularDart的整体说明。
+
+### 设计思路
+
+现在的框架设计基本是将庞大的功能需求划分为小的独立的模块，每个模块可以单独调试开发，再依据模块功能给出一个逻辑清晰的模板。
+
+AngularDart是Google用Dart语言重写的Angular框架。在AngularDart中，这种最小模块定义为Component，这个Component包括绑定了视图、数据与操作。由于AngularDart是用于Web app的，所以单独一个Component的结构如下：
+
+```bash
+```
+
+
+
+
 ## 3月7日更新
 看网上课程时，总觉得自己多出了许多神奇的能力，可以写出优美明确又有效率的代码。但现实是，一个你觉得很简单的问题，花了几个小时来找究竟哪里写错了.....
 
 ### Global样式变量是必需的，这需要scss
 
-global样式中定义了theme和accent颜色，其他都是从这两色计算得来（比如重要文字是theme颜色变深40%等），定义了不同重要程度的文字大小等，这样比较协调一致，并且不同项目中修改也非常便利。
+global样式中只定义了theme和accent颜色，其他都是从这两色计算得来（比如重要文字是theme颜色变深40%等），定义了不同重要程度的文字大小等，这样比较协调一致，并且不同项目中修改也非常便利。
 
 angulardart中使用scss并关联，需要如下步骤（网上解答很多，也许是哪里设置的不对，唯有以下这种我尝试成功）：
 1. add a build.yaml in root dir, in this case is client dir adding following lines:
